@@ -1,0 +1,81 @@
+:root {
+  --splitTransitionTime: 0.5s;
+  --splitTransitionCurve: ease-out;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.split-main {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr;
+  transition-duration: var(--splitTransitionTime);
+  transition-timing-function: var(--splitTransitionCurve);
+  column-gap: 2%;
+}
+
+.split-minimized {
+  grid-template-columns: 0% 1fr;
+}
+
+.split-maximized {
+  grid-template-columns: 20% 1fr;
+}
+
+.split-min-btn {
+  position: absolute;
+  transition: left var(--splitTransitionTime) var(--splitTransitionCurve);
+  height: 100%;
+  border-radius: 0;
+  padding: 0px;
+  width: 2%;
+  text-align: left;
+  border-top: black 1px;
+  border-bottom: black 1px;
+  border-style: solid;
+}
+
+.split-btn-min {
+  left: 0%;
+
+}
+
+.split-btn-max {
+  left: 20%;
+}
+
+.split-left {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  background-color: grey;
+  border: black 1px;
+  border-style: solid;
+}
+
+.split-right {
+  background-color: beige;
+  padding-left: 1%;
+  border: black 1px;
+  border-style: solid;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  background-color: #aca1cf;
+  padding: 10px;
+  color: white;
+  align-content: center;
+}
+
+.header div {
+  margin-bottom: 0px;
+  color: wheat;
+  text-align: center;
+}
