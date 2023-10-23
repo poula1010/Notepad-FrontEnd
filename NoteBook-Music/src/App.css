@@ -1,6 +1,8 @@
 :root {
   --splitTransitionTime: 0.5s;
   --splitTransitionCurve: ease-out;
+  --header-purple: #9095c3;
+  --note-mauve: #4A4E74;
   height: 100%;
 }
 
@@ -52,14 +54,16 @@
   flex-direction: column;
   flex-wrap: nowrap;
   overflow: hidden;
-  background-color: grey;
+  background-color: white;
   border: black 1px;
   border-style: solid;
-  color: white;
+  color: black;
+  font-family: 'Karla', sans-serif;
 }
 
 .app-title {
-  background-color: #aca1cf;
+  background-color: var(--header-purple);
+
   height: 50px;
   display: flex;
   align-items: center;
@@ -67,27 +71,55 @@
   padding-left: 10px;
   font-size: 24px;
   font-weight: 600;
+  color: white;
+  border: rgb(70 51 131 / 29%) 1px;
+  border-style: solid;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  flex-direction: row;
+  text-wrap: nowrap;
 }
 
 .split-right {
   background-color: beige;
-  padding-left: 1%;
-  border: black 1px;
-  border-style: solid;
+
+}
+
+.text-box {
+  height: 100%;
+  width: 100%;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   height: 50px;
-  background-color: #aca1cf;
+  background-color: var(--header-purple);
   padding: 10px;
   color: white;
   align-content: center;
+  font-family: 'Karla', sans-serif;
 }
 
 .header div {
   margin-bottom: 0px;
   color: wheat;
   text-align: center;
+}
+
+.note-header {
+  height: 50px;
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  border: rgb(70 51 131 / 29%) 1px;
+  border-style: solid;
+  overflow-x: hidden;
+  text-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.active {
+  background-color: var(--note-mauve);
+  color: white
 }
