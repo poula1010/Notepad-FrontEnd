@@ -10,7 +10,7 @@ export default function Split() {
     return (
         <div className={"split-main " + splitClass}>
             <div className="split-left">
-                <p>Text</p>
+                <div className="app-title">Notes</div>
                 <p>Text</p>
                 <p>Text</p>
                 <p>Text</p>

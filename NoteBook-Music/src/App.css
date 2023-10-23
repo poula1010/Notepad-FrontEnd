@@ -55,6 +55,18 @@
   background-color: grey;
   border: black 1px;
   border-style: solid;
+  color: white;
+}
+
+.app-title {
+  background-color: #aca1cf;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 10px;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .split-right {
