@@ -16,7 +16,7 @@
   grid-template-rows: 1fr;
   transition-duration: var(--splitTransitionTime);
   transition-timing-function: var(--splitTransitionCurve);
-  column-gap: 2%;
+  column-gap: 0%;
 }
 
 .split-minimized {
@@ -28,16 +28,18 @@
 }
 
 .split-min-btn {
+  background-color: #6460b53b;
   position: absolute;
   transition: left var(--splitTransitionTime) var(--splitTransitionCurve);
-  height: 100%;
+  height: 20%;
   border-radius: 0;
   padding: 0px;
-  width: 2%;
+  width: 1.5%;
+  top: 40%;
   text-align: left;
-  border-top: black 1px;
-  border-bottom: black 1px;
+  border: black 1px;
   border-style: solid;
+  border-radius: 6px;
 }
 
 .split-btn-min {
@@ -67,7 +69,7 @@
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: space-between;
   padding-left: 10px;
   font-size: 24px;
   font-weight: 600;
@@ -86,8 +88,9 @@
 }
 
 .text-box {
-  height: 100%;
-  width: 100%;
+  height: 98.1%;
+  width: 95.8%;
+  padding: 1% 2% 1% 2%;
 }
 
 .header {

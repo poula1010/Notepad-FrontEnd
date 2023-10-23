@@ -8,7 +8,10 @@ export default function SideBar(props) {
     });
     return (
         <div className="split-left">
-            <div className="app-title">My Notes</div>
+            <div className="app-title">
+                <h4>My Notes</h4>
+                <button onClick={props.createNote}>Add</button>
+            </div>
             {noteHeads}
         </div>
     )

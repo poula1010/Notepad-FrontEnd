@@ -3,7 +3,7 @@ import SideBar from "./SideBar";
 
 export default function Split() {
     const [splitMaximized, setSplitMaximized] = useState(true);
-    const [notes, setNotes] = useState([{ id: 0, body: "Hi" }, { id: 1, body: 'Hello' }]);
+    const [notes, setNotes] = useState([{ id: 1, body: "Hi" }, { id: 2, body: 'Hello' }]);
     const [currentNoteId, setCurrentNoteId] = useState(notes[0]?.id || 0);
     const currentNote = findCurrentNote();
     console.log(currentNote);
@@ -31,15 +31,29 @@ export default function Split() {
         setSplitMaximized(prev => !prev);
     }
     function handleNoteTextChange(e) {
-        console.log("under Construction");
-        console.log(e.target.value);
+        setNotes((prev) => {
+            const newNotes = prev.map(note => {
+                if (note.id === currentNoteId) {
+                    return { ...note, body: e.target.value };
+                }
+                else {
+                    return note;
+                }
+            })
+            return newNotes;
+        })
     }
 
     const splitBtnClass = splitMaximized === true ? "split-btn-max" : "split-btn-min";
     const splitClass = splitMaximized === true ? "split-maximized" : "split-minimized";
     return (
         <div className={"split-main " + splitClass}>
-            <SideBar notes={notes} updateId={updateCurrentNoteId} currentNoteId={currentNoteId} />
+            <SideBar
+                notes={notes}
+                updateId={updateCurrentNoteId}
+                currentNoteId={currentNoteId}
+                createNote={createNewNote}
+            />
             <div className="split-right">
                 <textarea className="text-box" onChange={handleNoteTextChange} value={currentNote.body} ></textarea>
             </div>
