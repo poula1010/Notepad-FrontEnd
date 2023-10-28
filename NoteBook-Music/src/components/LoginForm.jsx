@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom";
+import { loginAPICall } from "../services/AuthService";
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({ usernameOrEmail: "", password: "" });
@@ -14,7 +15,11 @@ export default function LoginForm() {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(formData);
+        loginAPICall(formData).then(response => {
+            console.log(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
     }
     return (
         <div className="form-centerer">

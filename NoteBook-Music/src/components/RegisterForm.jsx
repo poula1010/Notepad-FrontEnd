@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { registerAPICall } from "../services/AuthService";
 
 export default function RegisterForm() {
     const [formData, setFormData] = useState({ name: "", username: "", password: "", email: "" });
-
+    const navigator = useNavigate();
     function handleFormChange(e) {
 
         setFormData(prev => {
@@ -14,7 +15,12 @@ export default function RegisterForm() {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(formData);
+        registerAPICall(formData).then((response) => {
+            console.log(response.data);
+            navigator("/login");
+        }).catch(error => {
+            console.error(error);
+        })
     }
     return (
         <div className="form-centerer">
@@ -30,7 +36,7 @@ export default function RegisterForm() {
                         <input className="input-text" type="text" name="email" placeholder="Email" onChange={handleFormChange} value={formData.email}></input>
                         <input className="input-text" type="password" name="password" placeholder="Password" onChange={handleFormChange} value={formData.password}></input>
 
-                        <button className="submit-btn" onClick={handleSubmit}>Login</button>
+                        <button className="submit-btn" onClick={handleSubmit}>Register</button>
                     </form>
                 </div>
                 <div className="form-tail">
