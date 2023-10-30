@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { NavLink } from "react-router-dom";
-import { loginAPICall } from "../services/AuthService";
+import { NavLink, useNavigate } from "react-router-dom";
+import { loginAPICall, storeToken } from "../services/AuthService";
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({ usernameOrEmail: "", password: "" });
-
+    const navigator = useNavigate();
     function handleFormChange(e) {
 
         setFormData(prev => {
@@ -15,8 +15,13 @@ export default function LoginForm() {
     }
     function handleSubmit(e) {
         e.preventDefault();
+
+
         loginAPICall(formData).then(response => {
             console.log(response.data);
+            const token = response.data.accessToken;
+            storeToken("Bearer " + token);
+            navigator("/main")
         }).catch(error => {
             console.error(error);
         })

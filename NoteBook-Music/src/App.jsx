@@ -3,9 +3,10 @@
 import './App.css'
 import Header from './components/Header'
 import Split from './components/Split'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import AuthenticatedRoute from './components/AuthenticatedRoute'
 function App() {
 
   return (
@@ -13,7 +14,17 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/main" element={<Split />}></Route>
+
+          <Route path="/main" element={
+            <AuthenticatedRoute>
+              <Split />
+            </AuthenticatedRoute>}>
+          </Route>
+          <Route path="/" element={
+            <AuthenticatedRoute>
+              <Navigate to="/main" />
+            </AuthenticatedRoute>}>
+          </Route>
           <Route path="/login" element={<LoginForm />}></Route>
           <Route path="/register" element={<RegisterForm />}></Route>
         </Routes>

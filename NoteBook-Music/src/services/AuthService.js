@@ -6,3 +6,29 @@ const AUTH_REST_API_BASE_URL = "http://localhost:8080/api/auth";
 export const registerAPICall=(registerObj) => axios.post(AUTH_REST_API_BASE_URL+"/register",registerObj);
 
 export const loginAPICall=(loginObj)=> axios.post(AUTH_REST_API_BASE_URL+"/login",loginObj);
+
+export const getToken= () => localStorage.getItem("token");
+
+export const storeToken=(token) => localStorage.setItem("token",token);
+
+export const saveLoggedInUser= (name) =>sessionStorage.setItem("authenticatedUser",name);
+
+export const isUserLoggedIn = () =>{
+    const username = localStorage.getItem("token");
+    if(username == null){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+export const getLoggedInUser = () =>{
+    return sessionStorage.getItem("authenticatedUser");
+}
+
+export const logOut= ()=>{
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("authenticatedUser");
+    window.location.reload(false);
+}
