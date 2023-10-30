@@ -23,10 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-package.json
-package-lock.json
-vite.config.js
+
 README.node_modules
-.eslintrc.cjs
+
 
 ../todo-front
