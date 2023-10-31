@@ -18,7 +18,7 @@ export default function LoginForm() {
 
 
         loginAPICall(formData).then(response => {
-            console.log(response.data);
+
             const token = response.data.accessToken;
             storeToken("Bearer " + token);
             navigator("/main")

@@ -1,12 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SideBar from "./SideBar";
+import { getNotes } from "../services/NoteService";
 
 export default function Split() {
     const [splitMaximized, setSplitMaximized] = useState(true);
-    const [notes, setNotes] = useState([{ id: 1, body: "Hi" }, { id: 2, body: 'Hello' }]);
+    const [notes, setNotes] = useState([{ id: 1, body: "Hi" }]);
     const [currentNoteId, setCurrentNoteId] = useState(notes[0]?.id || 0);
     const currentNote = findCurrentNote();
-    console.log(currentNote);
+    useEffect(() => {
+        let newNotes;
+        getNotes().then(resolved => {
+            newNotes = resolved.data;
+            setNotes(newNotes);
+        }).catch(() => { console.log("erorr") })
+
+    }, [])
     function findCurrentNote() {
         const currNoteArr = notes.filter(note => {
             return note.id === currentNoteId;
