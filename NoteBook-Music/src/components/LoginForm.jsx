@@ -22,6 +22,7 @@ export default function LoginForm() {
             const token = response.data.accessToken;
             storeToken("Bearer " + token);
             navigator("/main")
+            window.location.reload(false);
         }).catch(error => {
             console.error(error);
         })

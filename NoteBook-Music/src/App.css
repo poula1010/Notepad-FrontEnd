@@ -214,7 +214,7 @@
 
 .header div {
   margin-bottom: 0px;
-  color: wheat;
+  color: white;
   text-align: center;
 }
 
@@ -233,4 +233,17 @@
 .active {
   background-color: var(--note-mauve);
   color: white
+}
+
+.logout {
+  display: flex;
+  font-size: large;
+  align-items: center;
+  color: white;
+  margin-right: 10px;
+
+}
+
+.logout:hover {
+  cursor: grab;
 }
