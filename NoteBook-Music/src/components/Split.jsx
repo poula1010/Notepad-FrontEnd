@@ -7,7 +7,6 @@ export default function Split() {
     const [notes, setNotes] = useState([]);
     const [currentNoteId, setCurrentNoteId] = useState(notes[0]?.id || 0);
     const currentNote = findCurrentNote();
-    console.log(currentNoteId);
     useEffect(() => {
         let newNotes;
         getNotes().then(resolved => {
