@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom";
-import { loginAPICall, storeToken } from "../services/AuthService";
+import { loginAPICall, saveLoggedInUser, storeToken } from "../services/AuthService";
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({ usernameOrEmail: "", password: "" });
@@ -20,6 +20,7 @@ export default function LoginForm() {
         loginAPICall(formData).then(response => {
 
             const token = response.data.accessToken;
+            saveLoggedInUser(formData.usernameOrEmail);
             storeToken("Bearer " + token);
             navigator("/main")
             window.location.reload(false);
