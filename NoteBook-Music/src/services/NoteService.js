@@ -12,3 +12,5 @@ axios.interceptors.request.use(function(config){
 
 export const getNotes = ()=> axios.get(BASE_REST_API_URL);
 
+export const addNote =()=> axios.post(BASE_REST_API_URL);
+

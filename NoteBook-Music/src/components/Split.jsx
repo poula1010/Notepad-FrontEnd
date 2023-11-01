@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import SideBar from "./SideBar";
-import { getNotes } from "../services/NoteService";
+import { addNote, getNotes } from "../services/NoteService";
 
 export default function Split() {
     const [splitMaximized, setSplitMaximized] = useState(true);
@@ -12,7 +12,7 @@ export default function Split() {
         getNotes().then(resolved => {
             newNotes = resolved.data;
             setNotes(newNotes);
-        }).catch(() => { console.log("erorr") })
+        }).catch(() => { console.log("error") })
 
     }, [])
     function findCurrentNote() {
@@ -22,14 +22,15 @@ export default function Split() {
         return currNoteArr[0];
     }
     function createNewNote() {
-        const newNote = {
-            id: notes.length + 1,
-            body: ""
-        };
-        setNotes(prev => {
-            return [...prev, newNote];
-        });
-        setCurrentNoteId(newNote.id);
+        let newNote;
+        addNote().then(resolved => {
+            newNote = resolved.data;
+            setNotes(prev => {
+                return [...prev, newNote];
+            });
+            setCurrentNoteId(newNote.id);
+        })
+
     }
     function updateCurrentNoteId(id) {
         setCurrentNoteId(id);
