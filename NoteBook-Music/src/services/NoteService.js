@@ -14,3 +14,5 @@ export const getNotes = ()=> axios.get(BASE_REST_API_URL);
 
 export const addNote =()=> axios.post(BASE_REST_API_URL);
 
+export const updateNote = (noteDto) => axios.put(BASE_REST_API_URL,noteDto);
+

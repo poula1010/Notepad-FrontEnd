@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import SideBar from "./SideBar";
-import { addNote, getNotes } from "../services/NoteService";
+import { addNote, getNotes, updateNote } from "../services/NoteService";
 
 export default function Split() {
     const [splitMaximized, setSplitMaximized] = useState(true);
     const [notes, setNotes] = useState([]);
     const [currentNoteId, setCurrentNoteId] = useState(notes[0]?.id || 0);
     const currentNote = findCurrentNote();
-    console.log(notes);
+    console.log(currentNoteId);
     useEffect(() => {
         let newNotes;
         getNotes().then(resolved => {
@@ -48,6 +48,7 @@ export default function Split() {
             const newNotes = prev.map(note => {
                 if (note.id === currentNoteId) {
                     return { ...note, body: e.target.value };
+
                 }
                 else {
                     return note;
@@ -56,7 +57,12 @@ export default function Split() {
             return newNotes;
         })
     }
-
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            updateNote(currentNote)
+        }, 500)
+        return () => clearTimeout(timeoutId)
+    }, [currentNote])
     const splitBtnClass = splitMaximized === true ? "split-btn-max" : "split-btn-min";
     const splitClass = splitMaximized === true ? "split-maximized" : "split-minimized";
     return (
