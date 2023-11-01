@@ -13,11 +13,12 @@
 
 .split-main {
   display: grid;
-  height: 100%;
+  height: calc(100% - 70px);
   grid-template-rows: 1fr;
   transition-duration: var(--splitTransitionTime);
   transition-timing-function: var(--splitTransitionCurve);
   column-gap: 0%;
+
 }
 
 .split-minimized {
@@ -246,4 +247,24 @@
 
 .logout:hover {
   cursor: grab;
+}
+
+.no-notes {
+  width: 100%;
+  height: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  font-family: "Karla", "sans-serif";
+}
+
+.first-note {
+  cursor: pointer;
+  background-color: #4A4E74;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  padding: 1rem;
 }

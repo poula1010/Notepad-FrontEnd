@@ -4,14 +4,18 @@ import { addNote, getNotes } from "../services/NoteService";
 
 export default function Split() {
     const [splitMaximized, setSplitMaximized] = useState(true);
-    const [notes, setNotes] = useState([{ id: 1, body: "Hi" }]);
+    const [notes, setNotes] = useState([]);
     const [currentNoteId, setCurrentNoteId] = useState(notes[0]?.id || 0);
     const currentNote = findCurrentNote();
+    console.log(notes);
     useEffect(() => {
         let newNotes;
         getNotes().then(resolved => {
             newNotes = resolved.data;
             setNotes(newNotes);
+            if (newNotes.length > 0) {
+                setCurrentNoteId(newNotes[0].id);
+            }
         }).catch(() => { console.log("error") })
 
     }, [])
@@ -56,18 +60,28 @@ export default function Split() {
     const splitBtnClass = splitMaximized === true ? "split-btn-max" : "split-btn-min";
     const splitClass = splitMaximized === true ? "split-maximized" : "split-minimized";
     return (
-        <div className={"split-main " + splitClass}>
-            <SideBar
-                notes={notes}
-                updateId={updateCurrentNoteId}
-                currentNoteId={currentNoteId}
-                createNote={createNewNote}
-            />
-            <div className="split-right">
-                <textarea className="text-box" onChange={handleNoteTextChange} value={currentNote.body} ></textarea>
+        notes.length > 0 ?
+            <div className={"split-main " + splitClass}>
+                <SideBar
+                    notes={notes}
+                    updateId={updateCurrentNoteId}
+                    currentNoteId={currentNoteId}
+                    createNote={createNewNote}
+                />
+                <div className="split-right">
+                    <textarea className="text-box" onChange={handleNoteTextChange} value={currentNote.body} ></textarea>
+                </div>
+                <button className={"split-min-btn " + splitBtnClass} onClick={handleSplitMinimize} ></button>
             </div>
-            <button className={"split-min-btn " + splitBtnClass} onClick={handleSplitMinimize} ></button>
-        </div>
-
+            :
+            <div className="no-notes">
+                <h1>You have no notes</h1>
+                <button
+                    className="first-note"
+                    onClick={createNewNote}
+                >
+                    Create one now
+                </button>
+            </div>
     )
 }
